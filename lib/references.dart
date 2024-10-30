@@ -5,6 +5,7 @@ class References {
 
   static const String emailRegex = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
   static const String emailDomain = "jeitaly.org";
+  static const String phonePrefix = "+39";
 
   static const double maxEditorWidth = 400.0;
 

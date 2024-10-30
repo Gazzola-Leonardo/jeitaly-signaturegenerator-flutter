@@ -45,7 +45,7 @@ class SignatureEditorController extends State<SignatureEditor> {
             ),
             TextFormField(
               controller: phoneNumberController,
-              decoration: const InputDecoration(labelText: "Telefono"),
+              decoration: const InputDecoration(labelText: "Telefono", prefixText: References.phonePrefix),
               validator: StringValidator.phoneNumberValidator,
             ),
             TextFormField(
@@ -77,7 +77,7 @@ class SignatureEditorController extends State<SignatureEditor> {
   }
 
   SignatureModel? getSignature() {
-    if(!hasBeenValidated) {
+    if (!hasBeenValidated) {
       return null;
     }
 

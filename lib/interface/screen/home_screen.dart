@@ -6,6 +6,8 @@ import 'package:jeitaly_signaturegenerator_flutter/references.dart';
 class HomeScreen extends StatefulWidget {
   static const String route = "/homeScreen";
 
+  const HomeScreen({super.key});
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
