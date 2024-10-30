@@ -1,3 +1,4 @@
+import 'package:jeitaly_signaturegenerator_flutter/references.dart';
 import 'package:jeitaly_signaturegenerator_flutter/resources/helper/email_helper.dart';
 import 'package:jeitaly_signaturegenerator_flutter/resources/helper/phone_number_helper.dart';
 
@@ -15,7 +16,7 @@ class StringValidator {
       return "Campo obbligatorio";
     }
 
-    if (!EmailHelper.isValidEmail(value)) {
+    if (!EmailHelper.isValidEmail(value + "@${References.emailDomain}")) {
       return "Email non valida";
     }
 

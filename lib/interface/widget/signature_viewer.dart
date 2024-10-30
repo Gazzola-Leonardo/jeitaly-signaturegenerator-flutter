@@ -44,11 +44,11 @@ class _SignatureViewerState extends State<SignatureViewer> {
       return;
     }
 
-    final String emptySignature = await SignatureProvider(widget.signature).getCompiledSignature();
+    final String compiledSignature = await SignatureProvider(widget.signature).getCompiledSignature();
 
     final String sizedSignature = """
     <div style='width: width:${HtmlHelper(context).htmlPxToFlutterPx(References.signatureWidthInPx)}px; height:${HtmlHelper(context).htmlPxToFlutterPx(References.signatureHeightInPx)};'>
-    $emptySignature
+    $compiledSignature
     </div>
     """;
 

@@ -19,7 +19,7 @@ class References {
     name: "Nome",
     surname: "Cognome",
     role: "Ruolo",
-    email: "Email",
+    emailName: "Email",
     phoneNumber: 'Telefono',
   );
 }

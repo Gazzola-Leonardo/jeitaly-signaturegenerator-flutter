@@ -40,7 +40,7 @@ class SignatureEditorController extends State<SignatureEditor> {
             ),
             TextFormField(
               controller: emailController,
-              decoration: const InputDecoration(labelText: "Email"),
+              decoration: const InputDecoration(labelText: "Email", suffixText: "@${References.emailDomain}"),
               validator: StringValidator.emailValidator,
             ),
             TextFormField(
@@ -88,7 +88,7 @@ class SignatureEditorController extends State<SignatureEditor> {
     return SignatureModel(
       name: nameController.text,
       surname: surnameController.text,
-      email: emailController.text,
+      emailName: emailController.text,
       phoneNumber: phoneNumberController.text,
       role: roleController.text,
     );
