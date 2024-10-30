@@ -23,14 +23,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget buildBody() {
     return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
+      child: ListView(
+        shrinkWrap: true,
         children: [
-          SignatureEditor(key: signatureEditorKey),
-          ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: References.maxEditorWidth),
-            child: Padding(
-              padding: const EdgeInsets.only(top: 32.0),
+          Center(child: SignatureEditor(key: signatureEditorKey)),
+          SizedBox(height: 32.0),
+          Center(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: References.maxEditorWidth),
               child: Align(
                 alignment: AlignmentDirectional.centerEnd,
                 child: ElevatedButton(
@@ -44,8 +44,16 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          SignatureViewer(signature: References.defaultSignature),
-          // if (!(signatureEditorKey.currentState?.validate() ?? false)) Container() else SignatureViewer(signature: signatureEditorKey.currentState!.getSignature()!),
+          SizedBox(height: 64.0),
+          Center(
+            child: (signatureEditorKey.currentState?.hasBeenValidated ?? false)
+                ? SignatureViewer(signature: signatureEditorKey.currentState!.getSignature()!)
+                : SizedBox(
+                    height: References.signatureEditorHeight,
+                    width: References.signatureEditorWidth,
+                    child: Center(child: Text("Compila tutti i campi per generare la firma")),
+                  ),
+          ),
         ],
       ),
     );

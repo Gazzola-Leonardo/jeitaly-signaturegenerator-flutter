@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:jeitaly_signaturegenerator_flutter/models/signature_model.dart';
@@ -22,11 +24,16 @@ class _SignatureViewerState extends State<SignatureViewer> {
     return SizedBox(
       height: References.signatureEditorHeight,
       width: References.signatureEditorWidth,
-      child: InAppWebView(
-        onWebViewCreated: (InAppWebViewController controller) {
-          webViewController = controller;
-          loadEmptySignature();
-        },
+      child: IgnorePointer(
+        child: InAppWebView(
+
+          onWebViewCreated: (InAppWebViewController controller) {
+            webViewController = controller;
+
+            loadEmptySignature();
+          },
+
+        ),
       ),
     );
   }
@@ -37,7 +44,7 @@ class _SignatureViewerState extends State<SignatureViewer> {
       return;
     }
 
-    final String emptySignature = await SignatureProvider.getEmptySignature();
+    final String emptySignature = await SignatureProvider(widget.signature).getCompiledSignature();
 
     final String sizedSignature = """
     <div style='width: width:${HtmlHelper(context).htmlPxToFlutterPx(References.signatureWidthInPx)}px; height:${HtmlHelper(context).htmlPxToFlutterPx(References.signatureHeightInPx)};'>

@@ -18,6 +18,8 @@ class SignatureEditorController extends State<SignatureEditor> {
   final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController roleController = TextEditingController();
 
+  bool hasBeenValidated = false;
+
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
@@ -59,6 +61,7 @@ class SignatureEditorController extends State<SignatureEditor> {
 
   bool validate() {
     if (formKey.currentState!.validate()) {
+      hasBeenValidated = true;
       return true;
     }
 
@@ -74,6 +77,10 @@ class SignatureEditorController extends State<SignatureEditor> {
   }
 
   SignatureModel? getSignature() {
+    if(!hasBeenValidated) {
+      return null;
+    }
+
     if (!validate()) {
       return null;
     }
