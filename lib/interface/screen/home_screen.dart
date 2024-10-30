@@ -44,7 +44,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          if (!(signatureEditorKey.currentState?.validate() ?? false)) Container() else SignatureViewer(signature: signatureEditorKey.currentState!.getSignature()!),
+          SignatureViewer(signature: References.defaultSignature),
+          // if (!(signatureEditorKey.currentState?.validate() ?? false)) Container() else SignatureViewer(signature: signatureEditorKey.currentState!.getSignature()!),
         ],
       ),
     );

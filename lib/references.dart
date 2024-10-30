@@ -1,3 +1,5 @@
+import 'package:jeitaly_signaturegenerator_flutter/models/signature_model.dart';
+
 class References {
   static const String appName = "Generatore di firma email JE Italy";
 
@@ -6,6 +8,17 @@ class References {
 
   static const double maxEditorWidth = 400.0;
 
-  static const double signatureEditorWidth = 300.0;
-  static const double signatureEditorHeight = 150.0;
+  static const double signatureEditorWidth = 600.0;
+  static const double signatureEditorHeight = 400.0;
+  static const double signatureWidthInPx = 450.0;
+  static const double signatureHeightInPx = 450.0;
+
+
+  static SignatureModel defaultSignature = SignatureModel(
+    name: "Nome",
+    surname: "Cognome",
+    role: "Ruolo",
+    email: "Email",
+    phoneNumber: 'Telefono',
+  );
 }

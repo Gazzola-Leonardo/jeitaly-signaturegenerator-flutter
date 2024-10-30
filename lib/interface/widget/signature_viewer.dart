@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:jeitaly_signaturegenerator_flutter/models/signature_model.dart';
 import 'package:jeitaly_signaturegenerator_flutter/references.dart';
+import 'package:jeitaly_signaturegenerator_flutter/resources/helper/html_helper.dart';
 import 'package:jeitaly_signaturegenerator_flutter/resources/provider/signature_provider.dart';
 
 class SignatureViewer extends StatefulWidget {
@@ -19,8 +20,8 @@ class _SignatureViewerState extends State<SignatureViewer> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 200,
-      width: 400,
+      height: References.signatureEditorHeight,
+      width: References.signatureEditorWidth,
       child: InAppWebView(
         onWebViewCreated: (InAppWebViewController controller) {
           webViewController = controller;
@@ -39,7 +40,7 @@ class _SignatureViewerState extends State<SignatureViewer> {
     final String emptySignature = await SignatureProvider.getEmptySignature();
 
     final String sizedSignature = """
-    <div style='width: height:${References.signatureEditorHeight}px; width:${References.signatureEditorWidth}px;'> 
+    <div style='width: width:${HtmlHelper(context).htmlPxToFlutterPx(References.signatureWidthInPx)}px; height:${HtmlHelper(context).htmlPxToFlutterPx(References.signatureHeightInPx)};'>
     $emptySignature
     </div>
     """;
