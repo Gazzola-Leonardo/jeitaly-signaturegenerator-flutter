@@ -18,7 +18,22 @@ class SignatureEditorController extends State<SignatureEditor> {
   final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController roleController = TextEditingController();
 
+  final FocusNode emailFocusNode = FocusNode();
+
   bool hasBeenValidated = false;
+
+  @override
+  void initState() {
+    emailFocusNode.addListener(() {
+      if (emailFocusNode.hasFocus) {
+        if (emailController.text.isEmpty) {
+          emailController.text = "${nameController.text.toLowerCase()}.${surnameController.text.replaceAll(" ", "").toLowerCase()}";
+        }
+      }
+    });
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +57,7 @@ class SignatureEditorController extends State<SignatureEditor> {
             ),
             TextFormField(
               controller: emailController,
+              focusNode: emailFocusNode,
               decoration: const InputDecoration(labelText: "Email", suffixText: "@${References.emailDomain}"),
               validator: StringValidator.emailValidator,
             ),
