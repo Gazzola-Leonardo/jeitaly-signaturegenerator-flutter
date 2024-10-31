@@ -16,7 +16,7 @@ class SignatureProvider {
 
     htmlSignature = htmlSignature.replaceAll("{{displayName}}", signature.displayName);
     htmlSignature = htmlSignature.replaceAll("{{role}}", signature.role);
-    htmlSignature = htmlSignature.replaceAll("{{email}}", signature.displayName);
+    htmlSignature = htmlSignature.replaceAll("{{email}}", signature.displayEmail);
     htmlSignature = htmlSignature.replaceAll("{{phoneNumber}}", signature.displayPhoneNumber);
 
     return htmlSignature;
