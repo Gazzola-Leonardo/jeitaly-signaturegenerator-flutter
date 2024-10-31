@@ -30,7 +30,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget buildBody() {
     if(isMobile()) {
       return Center(
-        child: Text("Questa applicazione non è supportata su dispositivi mobili"),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text("Questa applicazione non è supportata su dispositivi mobili\nAccedi da computer"),
+        ),
       );
     }
 
