@@ -29,11 +29,13 @@ class SignatureEditorController extends State<SignatureEditor> {
         child: Column(
           children: [
             TextFormField(
+              textCapitalization: TextCapitalization.words,
               controller: nameController,
               decoration: const InputDecoration(labelText: "Nome"),
               validator: StringValidator.requiredValidator,
             ),
             TextFormField(
+              textCapitalization: TextCapitalization.words,
               controller: surnameController,
               decoration: const InputDecoration(labelText: "Cognome"),
               validator: StringValidator.requiredValidator,

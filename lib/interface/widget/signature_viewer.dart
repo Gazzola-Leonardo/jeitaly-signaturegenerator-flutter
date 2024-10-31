@@ -19,20 +19,23 @@ class SignatureViewer extends StatefulWidget {
 class _SignatureViewerState extends State<SignatureViewer> {
   InAppWebViewController? webViewController;
 
+  int? contentWidth;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: References.signatureEditorHeight,
-      width: References.signatureEditorWidth,
+      width: contentWidth?.toDouble() ?? References.signatureWidthInPx,
       child: IgnorePointer(
         child: InAppWebView(
-
           onWebViewCreated: (InAppWebViewController controller) {
             webViewController = controller;
 
             loadEmptySignature();
           },
-
+          onContentSizeChanged: (InAppWebViewController controller, Size before, Size after) {
+            debugPrint("Content size changed: $after");
+          },
         ),
       ),
     );
@@ -45,11 +48,11 @@ class _SignatureViewerState extends State<SignatureViewer> {
     }
 
     final String compiledSignature = await SignatureProvider(widget.signature).getCompiledSignature();
+    final String style =
+        "width: width:${HtmlHelper(context).htmlPxToFlutterPx(References.signatureWidthInPx)}px; height:${HtmlHelper(context).htmlPxToFlutterPx(References.signatureHeightInPx)};";
 
     final String sizedSignature = """
-    <div style='width: width:${HtmlHelper(context).htmlPxToFlutterPx(References.signatureWidthInPx)}px; height:${HtmlHelper(context).htmlPxToFlutterPx(References.signatureHeightInPx)};'>
     $compiledSignature
-    </div>
     """;
 
     await webViewController!.loadData(data: sizedSignature);
