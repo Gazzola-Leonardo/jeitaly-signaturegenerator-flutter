@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:jeitaly_signaturegenerator_flutter/models/signature_model.dart';
 
 class References {
@@ -13,6 +14,8 @@ class References {
   static const double signatureEditorHeight = 400.0;
   static const double signatureWidthInPx = 450.0;
   static const double signatureHeightInPx = 450.0;
+
+  static Color primaryColor = Color(0xFFA50034);
 
 
   static SignatureModel defaultSignature = SignatureModel(

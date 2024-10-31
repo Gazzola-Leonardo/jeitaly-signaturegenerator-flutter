@@ -19,25 +19,33 @@ class SignatureViewer extends StatefulWidget {
 class _SignatureViewerState extends State<SignatureViewer> {
   InAppWebViewController? webViewController;
 
-  int? contentWidth;
-
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: References.signatureEditorHeight,
-      width: contentWidth?.toDouble() ?? References.signatureWidthInPx,
-      child: IgnorePointer(
-        child: InAppWebView(
-          onWebViewCreated: (InAppWebViewController controller) {
-            webViewController = controller;
+    return Column(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.black),
+            borderRadius: BorderRadius.circular(16.0),
+          ),
+          height: References.signatureEditorHeight,
+          width: References.signatureEditorWidth,
+          child: IgnorePointer(
+            child: InAppWebView(
+              onWebViewCreated: (InAppWebViewController controller) {
+                webViewController = controller;
 
-            loadEmptySignature();
-          },
-          onContentSizeChanged: (InAppWebViewController controller, Size before, Size after) {
-            debugPrint("Content size changed: $after");
-          },
+                loadEmptySignature();
+              },
+              onContentSizeChanged: (InAppWebViewController controller, Size before, Size after) {
+                debugPrint("Content size changed: $after");
+              },
+            ),
+          ),
         ),
-      ),
+        SizedBox(height: 16.0),
+        Text("Copia e incolla la firma nel tuo client di posta elettronica"),
+      ],
     );
   }
 

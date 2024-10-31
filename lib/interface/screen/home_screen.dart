@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:jeitaly_signaturegenerator_flutter/interface/widget/signature_editor.dart';
 import 'package:jeitaly_signaturegenerator_flutter/interface/widget/signature_viewer.dart';
 import 'package:jeitaly_signaturegenerator_flutter/references.dart';
+import 'dart:html' as html;
+
 import 'package:jeitaly_signaturegenerator_flutter/resources/provider/signature_provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -26,6 +28,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget buildBody() {
+    if(isMobile()) {
+      return Center(
+        child: Text("Questa applicazione non è supportata su dispositivi mobili"),
+      );
+    }
+
     return Center(
       child: ListView(
         shrinkWrap: true,
@@ -61,5 +69,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
     );
+  }
+
+  bool isMobile() {
+    final userAgent = html.window.navigator.userAgent.toLowerCase();
+
+    return userAgent.contains("iphone") || userAgent.contains("android") || userAgent.contains("ipad") || MediaQuery.of(context).size.width < 600;
   }
 }
